@@ -8,12 +8,19 @@ public class CreatAVLTree {
     public static void main(String[] args) {
         AVL avl = new AVL();
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 3; i++) {
             avl.add(new TreeNode(i));
         }
 
         avl.getRoot().orderTree();
+
+        avl.delete(1);
+        avl.delete(0);
+        System.out.println();
+        avl.getRoot().orderTree();
+
     }
+
     static class AVL{
         TreeNode root;
 
@@ -24,6 +31,108 @@ public class CreatAVLTree {
             }
 
             root.add(node);
+        }
+
+        /**
+         *  删除结点
+         */
+        public void delete(int value){
+            //
+            if (root == null){
+                System.out.println("没有结点");
+                return;
+            }
+
+            if (root.left == null && root.right == null){
+                root = null;
+                return;
+            }
+
+            // 找到要删除的结点
+            TreeNode delNode = search(value);
+            if (delNode == null) {
+                System.out.println("没有找到要删除的结点");
+                return;
+            }
+            // 找到父结点
+            TreeNode parentNode = searchParent(value);
+
+            // 1、删除的结点是叶子结点，直接将父结点的对应结点置空即可
+            if (delNode.left == null && delNode.right == null){
+                if (parentNode.left != null && parentNode.left.val ==value){
+                    parentNode.left = null;
+                }
+                if (parentNode.right != null && parentNode.right.val == value){
+                    parentNode.right = null;
+                }
+            }else if (delNode.left != null && delNode.right != null){
+                // 3.删除结点有俩个子结点
+                // 找到右子树中最小的一个替换删除结点，删除最小的结点
+                // 找到左子树中最大的结点替换删除结点值，删除那个最大的结点
+                delNode.val = searchMaxInLeftTree(delNode.left);
+            }else {
+                // 2.如果要删除的结点有一个子结点，删除的结点有可能是根结点
+
+                // 删除结点有左子结点
+                if (delNode.left != null){
+
+                    if (parentNode != null){
+
+                        // 删除结点是父结点的左结点
+                        if (delNode.val == parentNode.left.val){
+                            parentNode.left = delNode.left;
+                        }else {
+                            // 删除结点是父结点的右结点
+
+                            parentNode.right = delNode.left;
+                        }
+                    }else {
+                        // 删除结点是根结点
+                        root = delNode.left;
+                    }
+
+
+                }else {
+                    // 删除结点有左结点
+
+                    if (parentNode != null){
+                        // 删除结点是父结的右子结点
+                        if (delNode.val == parentNode.right.val){
+                            parentNode.right = delNode.right;
+                        }else {
+                            parentNode.left = delNode.right;
+                        }
+                    }else {
+                        // 删除结点是根结点
+
+                        root = delNode.right;
+                    }
+
+                }
+            }
+
+
+        }
+
+        private int searchMaxInLeftTree(TreeNode node) {
+
+            while (node.right != null){
+                node = node.right;
+            }
+
+            int value = node.val;
+
+            delete(value);
+
+            return value;
+        }
+
+        private TreeNode searchParent(int value) {
+            return root.searchParent(value);
+        }
+
+        private TreeNode search(int value) {
+            return root.search(value);
         }
 
         public TreeNode getRoot() {
@@ -46,7 +155,7 @@ public class CreatAVLTree {
             if (this.left != null){
                 this.left.orderTree();
             }
-            System.out.println(this.val + "   ");
+            System.out.print(this.val + "   ");
             if (this.right != null){
                 this.right.orderTree();
             }
@@ -160,6 +269,39 @@ public class CreatAVLTree {
             this.val = this.left.val;
             // 6.将当前结点的左结点设置为当前结点的左结点的左结点
             this.left = this.left.left;
+        }
+
+
+        public TreeNode search(int value) {
+            if (value == this.val){
+                return this;
+            }else if (value > this.val){
+                if (this.right != null){
+                    return this.right.search(value);
+                }else {
+                    return null;
+                }
+            }else {
+                if (this.left != null){
+                    return this.left.search(value);
+                }else {
+                    return null;
+                }
+            }
+        }
+
+        public TreeNode searchParent(int value) {
+            if ((this.left != null && this.left.val == value) || (this.right != null && this.right.val == value)){
+                return this;
+            }else {
+                if (this.right != null && value > this.val){
+                    return this.right.searchParent(value);
+                }else if (this.left != null && value < this.val){
+                    return this.left.searchParent(value);
+                }else {
+                    return null;
+                }
+            }
         }
     }
 
