@@ -43,11 +43,11 @@ public class HeapSort {
             if (j + 1 < length && arr[j] < arr[j + 1]){
                 j++;
             }
-            // 判断是否比根结点的值大
+            // 判断叶子结点是否比根结点的值大
             if (arr[j] > parentValue){
 
                 arr[i] = arr[j];
-
+                // 指向叶子结点，调整叶子结点的子结点为大顶堆
                 i = j;
             }else {
                 break;
