@@ -57,6 +57,39 @@ public class 调整数组顺序使奇数位于偶数前面 {
         }
         return nums;
     }
+
+
+    public void reOrderArray(int [] array) {
+        if (array.length == 1)
+            return;
+        int length = array.length;
+        int i = 0;
+        while (i < length) {
+            // 找到第一个偶数
+            while ((array[i] & 1) == 1) {
+                if (i >= length - 1)
+                    return;
+                i++;
+            }
+            // 找到第一个奇数
+            int j = i + 1;
+            while ((array[i] & 1) == 0){
+                if (j >= length - 1)
+                    return;
+                j++;
+            }
+            // 记录奇数的值
+            int temp = array[j];
+            // 所有的数都后移
+            while (j > i){
+                array[j] = array[j - 1];
+                j--;
+            }
+            // 将奇数换到前面
+            array[i] = temp;
+        }
+    }
+
     public static void main(String[] args) {
         调整数组顺序使奇数位于偶数前面 t = new 调整数组顺序使奇数位于偶数前面();
         int[] arr = {1, 2, 3, 4, 5, 6};
