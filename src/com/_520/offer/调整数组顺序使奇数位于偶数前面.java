@@ -1,5 +1,7 @@
 package com._520.offer;
 
+import java.util.Arrays;
+
 @SuppressWarnings("all")
 public class 调整数组顺序使奇数位于偶数前面 {
 
@@ -73,7 +75,7 @@ public class 调整数组顺序使奇数位于偶数前面 {
             }
             // 找到第一个奇数
             int j = i + 1;
-            while ((array[i] & 1) == 0){
+            while ((array[j] & 1) == 0){
                 if (j >= length - 1)
                     return;
                 j++;
@@ -93,8 +95,12 @@ public class 调整数组顺序使奇数位于偶数前面 {
     public static void main(String[] args) {
         调整数组顺序使奇数位于偶数前面 t = new 调整数组顺序使奇数位于偶数前面();
         int[] arr = {1, 2, 3, 4, 5, 6};
-        for (int num : t.exchange1(arr)) {
-            System.out.print("\t" + num);
-        }
+//        for (int num : t.exchange1(arr)) {
+//            System.out.print("\t" + num);
+//        }
+
+        t.reOrderArray(arr);
+
+        System.out.println(Arrays.toString(arr));
     }
 }
