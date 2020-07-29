@@ -4,22 +4,8 @@ package com._520.offer;
 public class 链表中倒数第k个结点 {
 
     public ListNode getKthFromEnd(ListNode head, int k) {
-        ListNode fast = head;
-        ListNode slow = head;
 
-        while (k != 0){
-            fast = fast.next;
-            if (fast == null){
-                return head;
-            }
-            k--;
-        }
-
-        while (fast != null){
-            fast = fast.next;
-            slow = slow.next;
-        }
-        return slow;
+        return null;
     }
 
     public static void main(String[] args) {
