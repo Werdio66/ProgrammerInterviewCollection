@@ -1,33 +1,20 @@
 package com._520.test;
 
-
-import java.util.ArrayList;
-import java.util.Iterator;
-
 public class Hello {
 
-    public static void main(String[] args) {
-        ArrayList<Integer> list = new ArrayList<>();
-        list.add(1);
-        list.add(2);
-        list.add(3);
-        list.add(4);
+    int a = 1;
 
+    static int b = 2;
 
-//        for (Integer integer : list) {
-//            list.remove(integer);
-//            break;
-//        }
+    static class StaticMethod{
 
-        Iterator<Integer> iterator = list.iterator();
-
-        while (iterator.hasNext()){
-            Integer next = iterator.next();
-            if (next == 3){
-                iterator.remove();
-            }
+        public void print(){
+            System.out.println(b);
         }
+    }
 
-        System.out.println(list);
+
+    public static void main(String[] args) {
+
     }
 }
