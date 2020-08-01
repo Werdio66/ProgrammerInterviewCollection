@@ -1,5 +1,18 @@
 package com._520.offer;
 
+/**
+ *  输入一个链表，反转链表后，输出新链表的表头。
+ *
+ *  思路：
+ *      1、使用中间指针保存下一个结点的值
+ *          例如对 1->2->3->4->5 翻转，
+ *          head 指针指向 1, next 指针保存下一个结点值 2
+ *          head 指向前一个结点 pre，刚开始 pre 为 null，将 pre 指向 head 1
+ *          将 head 更新为 2，然后使用 next 保存下一个结点 3
+ *          开始翻转，head 指向前一个结点 1，pre 指向 head 2，head 指向新结点 3
+ *          翻转后的结果为 1<-2 3->4->5
+ *          重复上述过程
+ */
 @SuppressWarnings("all")
 public class 翻转链表 {
 
