@@ -68,6 +68,39 @@ public class 和为s的连续正整数和 {
         return arr;
     }
 
+
+    public ArrayList<ArrayList<Integer> > FindContinuousSequence(int sum) {
+        ArrayList<ArrayList<Integer>> list = new ArrayList<>();
+
+        int left = 1;
+
+        int right = 2;
+
+        int s = left + right;
+
+        while (left < right){
+
+            if (s == sum){
+                ArrayList<Integer> arrayList = new ArrayList<>();
+
+                for (int i = left; i <= right; i++) {
+                    arrayList.add(i);
+                }
+
+                list.add(arrayList);
+                s -= left;
+                left++;
+            }else if (s > sum){
+                s -= left;
+                left++;
+            }else {
+                right++;
+                s += right;
+            }
+        }
+
+        return list;
+    }
     public static void main(String[] args) {
         和为s的连续正整数和 h = new 和为s的连续正整数和();
 
@@ -79,5 +112,11 @@ public class 和为s的连续正整数和 {
             }
             System.out.println();
         }
+
+
+        System.out.println(h.FindContinuousSequence(15));
     }
+
+
+
 }

@@ -10,6 +10,7 @@ public class 翻转单词顺序 {
             if (!"".equals(s1[i])){
                 sb.append(s1[i]);
             }
+            sb.append(" ");
         }
         return sb.toString().trim();
     }

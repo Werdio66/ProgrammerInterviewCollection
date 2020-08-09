@@ -1,0 +1,9 @@
+@startuml
+ReentrantLock -> Sync: sync.lock()
+Sync --> NonfairSync: lock()
+
+NonfairSync --> NonfairSync : compareAndSetState(0, 1)cas 的去获取锁
+Sync --> FairSync: lock()
+
+
+@enduml

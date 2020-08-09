@@ -1,20 +1,24 @@
 package com._520.offer;
 
+import java.util.Arrays;
+
 @SuppressWarnings("all")
 public class 左旋转字符串 {
 
-    public String reverseLeftWords(String s, int n) {
+    public String LeftRotateString(String str,int n) {
 
-        String end = s.substring(n);
-        String begin = s.substring(0, n);
+        if (n > str.length()){
+            return "";
+        }
 
-//        return new StringBuilder(s.substring(n)).append(s.substring(0, n)).toString();
-        return end + begin;
+        return str.substring(n) + str.substring(0, n);
     }
 
     public static void main(String[] args) {
         左旋转字符串 z = new 左旋转字符串();
+
         String str = "abcdefg";
-        System.out.println(z.reverseLeftWords(str, 2));
+
+        System.out.println(z.LeftRotateString(str, 3));
     }
 }
