@@ -1,9 +1,6 @@
 package com._520.offer;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class 数组中重复的数字 {
 
@@ -22,6 +19,28 @@ public class 数组中重复的数字 {
         return result;
     }
 
+    // hash
+    public boolean duplicate(int numbers[],int length,int [] duplication) {
+
+        int[] arr = new int[length];
+
+        for (int i = 0; i < numbers.length; i++) {
+            arr[numbers[i]]++;
+            if (arr[numbers[i]] == 1){
+                duplication[0] = numbers[i];
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+    private void swap(int[] arr, int left, int right){
+        int temp = arr[left];
+        arr[left] = arr[right];
+        arr[right] = temp;
+    }
     public static void main(String[] args) {
         数组中重复的数字 a = new 数组中重复的数字();
 
