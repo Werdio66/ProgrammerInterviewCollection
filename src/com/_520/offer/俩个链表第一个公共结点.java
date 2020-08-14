@@ -21,8 +21,12 @@ public class 俩个链表第一个公共结点 {
             l2 = l2.next;
 
             if (l1 != l2){
-                l1 = pHead2;
-                l2 = pHead1;
+                if (l1 == null){
+                    l1 = pHead2;
+                }
+                if (l2 == null){
+                    l2 = pHead1;
+                }
             }
         }
 
